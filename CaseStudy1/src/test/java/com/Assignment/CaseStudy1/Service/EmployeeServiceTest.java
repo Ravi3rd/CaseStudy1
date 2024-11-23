@@ -30,8 +30,8 @@ class EmployeeServiceTest {
 
         employee = new Employee();
         employee.setId(1L);
-        employee.setName("John Doe");
-        employee.setEmailId("john@example.com");
+        employee.setName("Ravi Ranjan");
+        employee.setEmailId("ravi@gmail.com");
     }
 
 
@@ -41,8 +41,8 @@ class EmployeeServiceTest {
         when(employeeRepository.save(employee)).thenReturn(employee);
         Employee savedEmployee = employeeService.saveEmployee(employee);
         assertEquals(1L, savedEmployee.getId());
-        assertEquals("John Doe", savedEmployee.getName());
-        assertEquals("john@example.com", savedEmployee.getEmailId());
+        assertEquals("Ravi Ranjan", savedEmployee.getName());
+        assertEquals("ravi@gmail.com", savedEmployee.getEmailId());
         verify(employeeRepository, times(1)).save(employee);
     }
 
@@ -52,21 +52,21 @@ class EmployeeServiceTest {
         Optional<Employee> foundEmployee = employeeService.getEmployeeById(1L);
         assertTrue(foundEmployee.isPresent());
         assertEquals(1L, foundEmployee.get().getId());
-        assertEquals("John Doe", foundEmployee.get().getName());
-        assertEquals("john@example.com", foundEmployee.get().getEmailId());
+        assertEquals("Ravi Ranjan", foundEmployee.get().getName());
+        assertEquals("ravi@gmail.com", foundEmployee.get().getEmailId());
         verify(employeeRepository, times(1)).findById(1L);
     }
 
     @Test
     void updateEmployeeById() {
         Employee updatedEmployee = new Employee();
-        updatedEmployee.setName("Jane Doe");
-        updatedEmployee.setEmailId("jane@example.com");
+        updatedEmployee.setName("Ravi Ranjan");
+        updatedEmployee.setEmailId("ravi@gmail.com");
         when(employeeRepository.findById(1L)).thenReturn(Optional.of(employee));
         when(employeeRepository.save(any(Employee.class))).thenReturn(updatedEmployee);
         Optional<Employee> result = employeeService.updateEmployeeById(1L, updatedEmployee);
-        assertEquals("Jane Doe", result.get().getName());
-        assertEquals("jane@example.com", result.get().getEmailId());
+        assertEquals("Ravi Ranjan", result.get().getName());
+        assertEquals("ravi@gmail.com", result.get().getEmailId());
         verify(employeeRepository, times(1)).findById(1L);
         verify(employeeRepository, times(1)).save(employee);
     }
